@@ -111,6 +111,7 @@ class AbstractSampler(object):
                 value_ids[check_list] = value = self.random_num(len(check_list))
                 perm = value.argsort(kind='quicksort')
                 aux = value[perm]
+                # mask = np.empty(aux.shape, dtype=np.bool)
                 mask = np.empty(aux.shape, dtype=np.bool_)
                 mask[:1] = True
                 mask[1:] = aux[1:] != aux[:-1]

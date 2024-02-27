@@ -256,7 +256,7 @@ class Config(object):
         use_gpu = self.final_config_dict['use_gpu']
         if use_gpu:
             os.environ["CUDA_VISIBLE_DEVICES"] = str(self.final_config_dict['gpu_id'])
-        self.final_config_dict['device'] = torch.device("cuda" if torch.cuda.is_available() and use_gpu else "cpu")
+        self.final_config_dict['device'] = torch.device("cuda:{}".format(str(self.final_config_dict['gpu_id'])) if torch.cuda.is_available() and use_gpu else "cpu")
 
     def _set_train_neg_sample_args(self):
         if self.final_config_dict['training_neg_sample_num']:
